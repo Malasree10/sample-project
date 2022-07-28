@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="536ab211-2c4d-4deb-91e6-56d4fca9d9e4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="cloudhubdeploymentFlow" doc:id="43ac65c3-24ca-4993-bac8-9c6800ebfb8d" >
+		<http:listener doc:name="Listener" doc:id="ccaadb55-02ce-487e-aad3-bfcc13520991" config-ref="HTTP_Listener_config" path="/cloud"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e8370657-e7fb-48e1-93eb-1be22b4fca4c" message="started"/>
+		<flow-ref doc:name="Flow Reference" doc:id="a72e028c-9964-4616-a6b3-1bfc69bc52b0" name="cloudhubdeploymentFlow1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a545c580-bc19-4c6c-bbd7-7ead443170f0" message="ended"/>
+	</flow>
+	<flow name="cloudhubdeploymentFlow1" doc:id="d4e3426c-7c2a-4f74-af1e-fcb6b881a33b" >
+		<logger level="INFO" doc:name="Logger" doc:id="f56c18f9-def4-44f8-ac38-1ee207f91faa" message="payload"/>
+	</flow>
+</mule>
